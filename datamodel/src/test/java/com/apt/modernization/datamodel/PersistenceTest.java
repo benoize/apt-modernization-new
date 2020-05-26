@@ -56,7 +56,7 @@ public class PersistenceTest {
 		
 		public void stop() {
 			if (start==INTERVAL_INVALID) {
-				LOG.warn("Timng stopped without start. Forcing start resulting in a 0-interval.");
+				LOG.warn("Interval stopped without start. Forcing start resulting in a 0-interval.");
 				start();
 			}
 			end=System.currentTimeMillis();
