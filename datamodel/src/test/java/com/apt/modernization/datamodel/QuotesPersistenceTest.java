@@ -15,7 +15,7 @@ import com.apt.modernization.datamodel.document.Quotes;
 import com.apt.modernization.datamodel.repository.QuotesRepository;
 
 @SpringBootTest
-public class QuotesPersistenceTest {
+public class QuotesPersistenceTest extends PersistenceTest {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(QuotesPersistenceTest.class);
 
@@ -60,27 +60,7 @@ public class QuotesPersistenceTest {
 		LOG.debug("Start persisting "+AMOUNT_MULTIPLE_INSERT+" Quotes....");
 		Interval interval=new Interval();
 		for (int i=0;i<AMOUNT_MULTIPLE_INSERT;i++) {
-			stringBuilder.setLength(0);
-			stringBuilder.append("name-");
-			stringBuilder.append(i);
-			String insured=stringBuilder.toString();
-			
-			stringBuilder.setLength(0);
-			stringBuilder.append("incept-");
-			stringBuilder.append(i);
-			String incept=stringBuilder.toString();
-			
-			stringBuilder.setLength(0);
-			stringBuilder.append("expiry-");
-			stringBuilder.append(i);
-			String expiry=stringBuilder.toString();
-			
-			stringBuilder.setLength(0);
-			stringBuilder.append("currency-");
-			stringBuilder.append(i);
-			String currency=stringBuilder.toString();
-			
-			Quotes quote=new Quotes(i, insured, incept, expiry, currency);
+			Quotes quote=buildSampleQuotes(i, stringBuilder);
 			quotesRepository.save(quote);
 		}
 		interval.stop();
@@ -99,48 +79,5 @@ public class QuotesPersistenceTest {
 		}
 		interval.stop();
 		LOG.debug("Quotes-Documents are empty now. Took "+interval.getInterval()+"ms.");
-	}
-	
-	//
-	// Nested classes
-	//
-	private static class Interval {
-		private static final Logger LOG = LoggerFactory.getLogger(Interval.class);
-		private static final long INTERVAL_INVALID=-1;
-		
-		private long start=INTERVAL_INVALID;
-		private long end=INTERVAL_INVALID;
-		
-		public Interval() {
-			start();
-		}
-		
-		public void start() {
-			start=System.currentTimeMillis();
-			end=INTERVAL_INVALID;
-		}
-		
-		public void stop() {
-			if (start==INTERVAL_INVALID) {
-				LOG.warn("Timng stopped without start. Forcing start resulting in a 0-interval.");
-				start();
-			}
-			end=System.currentTimeMillis();
-		}
-		
-		public long getInterval() {
-			long result=INTERVAL_INVALID;
-			if ((start!=INTERVAL_INVALID) && (end!=INTERVAL_INVALID))
-			{
-				result=end-start;
-			}
-			return result;
-		}
-		
-		@Override
-		public String toString() {
-			return String.valueOf(getInterval());
-		}
-		
 	}
 }
