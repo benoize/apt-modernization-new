@@ -15,9 +15,9 @@ import com.apt.modernization.datamodel.document.Quotes;
 import com.apt.modernization.datamodel.repository.QuotesRepository;
 
 @SpringBootTest
-public class PersistenceTest {
+public class QuotesPersistenceTest {
 	
-	private static final Logger LOG = LoggerFactory.getLogger(PersistenceTest.class);
+	private static final Logger LOG = LoggerFactory.getLogger(QuotesPersistenceTest.class);
 
 	private static final int AMOUNT_MULTIPLE_INSERT=10000;
 	
@@ -31,7 +31,7 @@ public class PersistenceTest {
 		LOG.debug("Starting basic persistence-Tests...");
 		assertNotNull(quotesRepository, "Unexpected: local quotesRepository is null");
 
-		// Check and delete probably existing persistent
+		// Check and delete perhaps existing persistent
 		Quotes existing=quotesRepository.findById(ID_BASIC_PERSISTENCE);
 		if (existing!=null) {
 			quotesRepository.delete(existing);
@@ -102,7 +102,7 @@ public class PersistenceTest {
 	}
 	
 	//
-	// Netsed classes
+	// Nested classes
 	//
 	private static class Interval {
 		private static final Logger LOG = LoggerFactory.getLogger(Interval.class);
