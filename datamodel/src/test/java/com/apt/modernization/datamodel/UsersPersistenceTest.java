@@ -26,9 +26,9 @@ public class UsersPersistenceTest extends PersistenceTest {
 		
 		LOG.debug("Starting Users-creation.....");
 		Users users=new Users();
-		users.setUser_id(1L); ;
-		users.setFirst_name("FirstName");
-		users.setLast_name("LastName");
+		users.setUserId(1L); ;
+		users.setFirstName("FirstName");
+		users.setLastName("LastName");
 		users.setEmail("Email");
 		
 		Quotes quotes=buildSampleQuotes(4711, null);

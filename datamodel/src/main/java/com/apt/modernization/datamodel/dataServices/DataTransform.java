@@ -27,7 +27,7 @@ public class DataTransform {
     private void printList() {
         quotesList = quotesRepository.findAll();
         for (Quotes quotes : quotesList) {
-            LOG.trace("{}, {}, {}, {}, {}",quotes.getQuote_id(),quotes.getInsured_name(),quotes.getIncept_date(),quotes.getExpiry_date() ,quotes.getCurrency());
+            LOG.trace("{}, {}, {}, {}, {}",quotes.getQuoteId(),quotes.getInsuredName(),quotes.getInceptDate(),quotes.getExpiryDate() ,quotes.getCurrency());
         }
     }
 }

@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 
 public class PersistenceTest {
 	
-	protected Quotes buildSampleQuotes(int i, StringBuilder externalBuilder) {
+	protected Quotes buildSampleQuotes(long i, StringBuilder externalBuilder) {
 		if (externalBuilder==null) {
 			externalBuilder=new StringBuilder();
 		}

@@ -21,7 +21,7 @@ public class QuotesPersistenceTest extends PersistenceTest {
 
 	private static final int AMOUNT_MULTIPLE_INSERT=10000;
 	
-	private static final int ID_BASIC_PERSISTENCE=1;
+	private static final long ID_BASIC_PERSISTENCE=1;
 	
 	@Autowired
 	private QuotesRepository quotesRepository;
