@@ -47,6 +47,9 @@ public class QuotesPersistenceTest extends PersistenceTest {
 		Quotes readQuotes=quotesRepository.findById(ID_BASIC_PERSISTENCE);
 		assertNotNull(readQuotes,"Could not persist new object.");
 		
+		Quotes byInceptDate=quotesRepository.findByInceptDate("BASIC_PERSISTENCE_DATE_1");
+		assertNotNull(byInceptDate,"Could not find new object by InceptDate.");
+		
 		LOG.debug("Finished basic persistence-Tests.");
 	}
 	
