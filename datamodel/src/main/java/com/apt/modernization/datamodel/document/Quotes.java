@@ -26,7 +26,7 @@ public class Quotes {
         return quoteId;
     }
 
-    public void setQuote_id(Long quoteId) {
+    public void setQuoteId(Long quoteId) {
         this.quoteId = quoteId;
     }
 

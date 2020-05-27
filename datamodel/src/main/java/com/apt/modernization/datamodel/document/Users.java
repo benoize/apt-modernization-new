@@ -51,6 +51,8 @@ public class Users {
 		return userQuoteList.toArray(new Quotes[userQuoteList.size()]);
 	}
 	public void setUserQuotes(Quotes[] quotes) {
+		ensureUserQuoteList();
+		userQuoteList.clear();
 		for (Quotes quote : quotes) {
 			addUserQuote(quote);
 		}

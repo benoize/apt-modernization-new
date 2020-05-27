@@ -7,32 +7,32 @@ import org.slf4j.LoggerFactory;
 
 public class PersistenceTest {
 	
-	protected Quotes buildSampleQuotes(long i, StringBuilder externalBuilder) {
+	protected Quotes buildSampleQuotes(long l, StringBuilder externalBuilder) {
 		if (externalBuilder==null) {
 			externalBuilder=new StringBuilder();
 		}
 		
 		externalBuilder.setLength(0);
 		externalBuilder.append("name-");
-		externalBuilder.append(i);
+		externalBuilder.append(l);
 		String insured=externalBuilder.toString();
 		
 		externalBuilder.setLength(0);
 		externalBuilder.append("incept-");
-		externalBuilder.append(i);
+		externalBuilder.append(l);
 		String incept=externalBuilder.toString();
 		
 		externalBuilder.setLength(0);
 		externalBuilder.append("expiry-");
-		externalBuilder.append(i);
+		externalBuilder.append(l);
 		String expiry=externalBuilder.toString();
 		
 		externalBuilder.setLength(0);
 		externalBuilder.append("currency-");
-		externalBuilder.append(i);
+		externalBuilder.append(l);
 		String currency=externalBuilder.toString();
 		
-		return new Quotes(i, insured, incept, expiry, currency);
+		return new Quotes(l, insured, incept, expiry, currency);
 	}
 	
 	//
