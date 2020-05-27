@@ -1,6 +1,7 @@
 package com.apt.modernization.datamodel;
 
 import com.apt.modernization.datamodel.document.Quotes;
+import com.apt.modernization.datamodel.document.Users;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +34,35 @@ public class PersistenceTest {
 		String currency=externalBuilder.toString();
 		
 		return new Quotes(l, insured, incept, expiry, currency);
+	}
+	
+	protected Users buildSampleUser(long l, StringBuilder externalBuilder) {
+		if (externalBuilder==null) {
+			externalBuilder=new StringBuilder();
+		}
+		
+		externalBuilder.setLength(0);
+		externalBuilder.append("firstname-");
+		externalBuilder.append(l);
+		String firstname=externalBuilder.toString();
+		
+		externalBuilder.setLength(0);
+		externalBuilder.append("lastname-");
+		externalBuilder.append(l);
+		String lastname=externalBuilder.toString();
+		
+		externalBuilder.setLength(0);
+		externalBuilder.append("email-");
+		externalBuilder.append(l);
+		String email=externalBuilder.toString();
+		
+		Users users=new Users();
+		users.setUserId(l);
+		users.setFirstName(firstname);
+		users.setLastName(lastname);
+		users.setEmail(email);
+		
+		return users;
 	}
 	
 	//

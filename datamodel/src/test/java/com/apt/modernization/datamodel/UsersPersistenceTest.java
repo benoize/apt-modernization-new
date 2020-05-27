@@ -72,34 +72,5 @@ public class UsersPersistenceTest extends PersistenceTest {
 		interval.stop();
 		LOG.debug("Users-Documents are empty now. Took "+interval.getInterval()+"ms.");
 	}
-	
-	private Users buildSampleUser(long l, StringBuilder externalBuilder) {
-		if (externalBuilder==null) {
-			externalBuilder=new StringBuilder();
-		}
-		
-		externalBuilder.setLength(0);
-		externalBuilder.append("firstname-");
-		externalBuilder.append(l);
-		String firstname=externalBuilder.toString();
-		
-		externalBuilder.setLength(0);
-		externalBuilder.append("lastname-");
-		externalBuilder.append(l);
-		String lastname=externalBuilder.toString();
-		
-		externalBuilder.setLength(0);
-		externalBuilder.append("email-");
-		externalBuilder.append(l);
-		String email=externalBuilder.toString();
-		
-		Users users=new Users();
-		users.setUserId(l);
-		users.setFirstName(firstname);
-		users.setLastName(lastname);
-		users.setEmail(email);
-		
-		return users;
-	}
 }
 
