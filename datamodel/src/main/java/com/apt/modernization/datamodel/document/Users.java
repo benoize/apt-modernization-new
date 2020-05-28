@@ -17,7 +17,8 @@ public class Users {
     private String email;
     private List<Quotes> userQuoteList;
     
-    public Users() {
+    public Users(long userId) {
+    	this.userId=Long.valueOf(userId);
     	this.userQuoteList=null;
     }
     
@@ -54,7 +55,7 @@ public class Users {
 		ensureUserQuoteList();
 		userQuoteList.clear();
 		for (Quotes quote : quotes) {
-			addUserQuote(quote);
+			userQuoteList.add(quote);
 		}
 	}
 	

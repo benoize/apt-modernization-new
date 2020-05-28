@@ -33,7 +33,12 @@ public class PersistenceTest {
 		externalBuilder.append(l);
 		String currency=externalBuilder.toString();
 		
-		return new Quotes(l, insured, incept, expiry, currency);
+		Quotes result=new Quotes(l);
+		result.setInsuredName(insured);
+		result.setInceptDate(incept);
+		result.setExpiryDate(expiry);
+		result.setCurrency(currency);
+		return result;
 	}
 	
 	protected Users buildSampleUser(long l, StringBuilder externalBuilder) {
@@ -56,8 +61,7 @@ public class PersistenceTest {
 		externalBuilder.append(l);
 		String email=externalBuilder.toString();
 		
-		Users users=new Users();
-		users.setUserId(l);
+		Users users=new Users(l);
 		users.setFirstName(firstname);
 		users.setLastName(lastname);
 		users.setEmail(email);

@@ -40,7 +40,11 @@ public class QuotesPersistenceTest extends PersistenceTest {
 		assertNull(existing, "Test persistence ID already exists and cant be deleted.");
 		
 		// Create new persistent and ...
-		Quotes newQuotes=new Quotes(ID_BASIC_PERSISTENCE, "BASIC_PERSISTENCE", "BASIC_PERSISTENCE_DATE_1", "BASIC_PERSISTENCE_DATE_2", "CURRENCY");
+		Quotes newQuotes=new Quotes(ID_BASIC_PERSISTENCE);
+		newQuotes.setInsuredName("BASIC_PERSISTENCE");
+		newQuotes.setInceptDate("BASIC_PERSISTENCE_DATE_1");
+		newQuotes.setExpiryDate("BASIC_PERSISTENCE_DATE_2");
+		newQuotes.setCurrency("CURRENCY");
 		quotesRepository.save(newQuotes);
 		
 		// check existence.
