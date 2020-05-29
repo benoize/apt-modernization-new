@@ -18,9 +18,7 @@ import com.apt.modernization.datamodel.repository.QuotesRepository;
 public class QuotesPersistenceTest extends PersistenceTest {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(QuotesPersistenceTest.class);
-
 	private static final int AMOUNT_MULTIPLE_INSERT=10000;
-	
 	private static final long ID_BASIC_PERSISTENCE=1;
 	
 	@Autowired

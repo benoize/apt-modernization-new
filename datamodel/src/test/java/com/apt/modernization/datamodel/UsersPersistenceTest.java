@@ -19,7 +19,6 @@ import com.apt.modernization.datamodel.repository.UsersRepository;
 public class UsersPersistenceTest extends PersistenceTest {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(UsersPersistenceTest.class);
-
 	private static final long ID_BASIC_PERSISTENCE=1;
 	
 	@Autowired

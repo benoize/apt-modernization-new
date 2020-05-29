@@ -1,4 +1,4 @@
-package com.apt.modernization.datamodel.dataServices;
+package com.apt.modernization.datamodel.dataservices;
 
 import java.util.List;
 

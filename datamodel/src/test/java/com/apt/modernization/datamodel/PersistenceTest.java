@@ -1,10 +1,12 @@
 package com.apt.modernization.datamodel;
 
-import com.apt.modernization.datamodel.document.Quotes;
-import com.apt.modernization.datamodel.document.Users;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.apt.modernization.datamodel.document.Child;
+import com.apt.modernization.datamodel.document.Container;
+import com.apt.modernization.datamodel.document.Quotes;
+import com.apt.modernization.datamodel.document.Users;
 
 public class PersistenceTest {
 	
@@ -67,6 +69,36 @@ public class PersistenceTest {
 		users.setEmail(email);
 		
 		return users;
+	}
+	
+	protected Child buildSampleChild(long l, StringBuilder externalBuilder) {
+		if (externalBuilder==null) {
+			externalBuilder=new StringBuilder();
+		}
+
+		externalBuilder.setLength(0);
+		externalBuilder.append("name-");
+		externalBuilder.append(l);
+		String name=externalBuilder.toString();
+
+		Child refered=new Child(l);
+		refered.setName(name);
+		return refered;
+	}
+	
+	protected Container buildSampleReferenceContainer(long l, StringBuilder externalBuilder) {
+		if (externalBuilder==null) {
+			externalBuilder=new StringBuilder();
+		}
+
+		externalBuilder.setLength(0);
+		externalBuilder.append("name-");
+		externalBuilder.append(l);
+		String name=externalBuilder.toString();
+
+		Container container=new Container(l);
+		container.setName(name);
+		return container;
 	}
 	
 	//

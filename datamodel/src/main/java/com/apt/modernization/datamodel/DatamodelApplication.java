@@ -1,6 +1,6 @@
 package com.apt.modernization.datamodel;
 
-import com.apt.modernization.datamodel.dataServices.DataTransform;
+import com.apt.modernization.datamodel.dataservices.DataTransform;
 import com.apt.modernization.datamodel.document.Quotes;
 import com.apt.modernization.datamodel.repository.QuotesRepository;
 import org.springframework.boot.SpringApplication;
