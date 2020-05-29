@@ -8,7 +8,6 @@ public class Child {
 	
     @Id
     private Long childId;
-    
     private String name;
     
     public Child(Long childId) {

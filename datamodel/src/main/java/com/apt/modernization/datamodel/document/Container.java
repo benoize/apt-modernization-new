@@ -12,18 +12,21 @@ public class Container {
 	
     @Id
     private Long containerId;
-    
     private String name;
     
+    // Arrays
+    private List<Child> listChildEmbedded;
     @DBRef
     private List<Child> listChildReferenced;
     
+    // Singles
     private Child embedded;
     @DBRef
     private Child referenced;
     
     public Container(long containerId) {
     	this.containerId=Long.valueOf(containerId);
+    	this.listChildEmbedded=null;
     	this.listChildReferenced=null;
     }
 
@@ -52,20 +55,36 @@ public class Container {
 		this.referenced = referenced;
 	}
 	
-	public Child[] getChildren() {
+	public Child[] getChildrenReferenced() {
 		ensureListChildReferenced();
 		return listChildReferenced.toArray(new Child[listChildReferenced.size()]);
 	}
-	public void setChildren(Child[] children) {
+	public void setChildrenReferenced(Child[] children) {
 		ensureListChildReferenced();
 		listChildReferenced.clear();
 		for (Child child : children) {
 			listChildReferenced.add(child);
 		}
 	}
-	public void addChild(Child child) {
+	public void addChildReferenced(Child child) {
 		ensureListChildReferenced();
 		listChildReferenced.add(child);
+	}
+	
+	public Child[] getChildrenEmbedded() {
+		ensureListChildEmbedded();
+		return listChildEmbedded.toArray(new Child[listChildEmbedded.size()]);
+	}
+	public void setChildrenEmbedded(Child[] children) {
+		ensureListChildEmbedded();
+		listChildEmbedded.clear();
+		for (Child child : children) {
+			listChildEmbedded.add(child);
+		}
+	}
+	public void addChildEmbedded(Child child) {
+		ensureListChildEmbedded();
+		listChildEmbedded.add(child);
 	}
 	
 	//
@@ -74,6 +93,11 @@ public class Container {
 	private void ensureListChildReferenced() {
 		if (listChildReferenced==null) {
 			listChildReferenced=new ArrayList<>();
+		}
+	}
+	private void ensureListChildEmbedded() {
+		if (listChildEmbedded==null) {
+			listChildEmbedded=new ArrayList<>();
 		}
 	}
 }

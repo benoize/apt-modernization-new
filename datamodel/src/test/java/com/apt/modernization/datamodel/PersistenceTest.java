@@ -77,7 +77,7 @@ public class PersistenceTest {
 		}
 
 		externalBuilder.setLength(0);
-		externalBuilder.append("name-");
+		externalBuilder.append("child-");
 		externalBuilder.append(l);
 		String name=externalBuilder.toString();
 
@@ -86,13 +86,13 @@ public class PersistenceTest {
 		return refered;
 	}
 	
-	protected Container buildSampleReferenceContainer(long l, StringBuilder externalBuilder) {
+	protected Container buildSampleContainer(long l, StringBuilder externalBuilder) {
 		if (externalBuilder==null) {
 			externalBuilder=new StringBuilder();
 		}
 
 		externalBuilder.setLength(0);
-		externalBuilder.append("name-");
+		externalBuilder.append("container-");
 		externalBuilder.append(l);
 		String name=externalBuilder.toString();
 

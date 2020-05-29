@@ -21,7 +21,11 @@ import com.apt.modernization.datamodel.repository.ChildRepository;
 public class ReferenceTest extends PersistenceTest {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(UsersPersistenceTest.class);
-	private static final long ID_BASIC_PERSISTENCE=1;
+	private static final long ID_CONTAINER=1;
+	private static final long ID_CHILD_LE=1;
+	private static final long ID_CHILD_LR=2;
+	private static final long ID_CHILD_E=3;
+	private static final long ID_CHILD_R=4;
 	
 	@Autowired
 	private ChildRepository referedRepository;
@@ -30,34 +34,20 @@ public class ReferenceTest extends PersistenceTest {
 	
 	@Test
 	public void testBasicReferences() {
-		resetTestEcosystem();
+		extinguishEcosystem();
+		populateEcosystem();
 		LOG.debug("Starting basic reference test.....");
 		
-		Container container=buildSampleReferenceContainer(ID_BASIC_PERSISTENCE, null);
+		Child childViaParent1=getFirstChildViaParent(ID_CONTAINER);
 		
-		Child childListReferenced=buildSampleChild(ID_BASIC_PERSISTENCE, null);
-		container.addChild(childListReferenced);
-		
-		Child embedded=buildSampleChild(ID_BASIC_PERSISTENCE+1, null);
-		container.setEmbedded(embedded);
-		Child referenced=buildSampleChild(ID_BASIC_PERSISTENCE+2, null);
-		container.setReferenced(referenced);
-		
-		containerRepository.save(container);
-		referedRepository.save(childListReferenced); // Must be saved separately, otherwise I couldnt retrieve it later on......
-		referedRepository.save(referenced); // Must be saved separately, otherwise I couldnt retrieve it later on......
-		
-		Child childViaParent1=getFirstChildViaParent(ID_BASIC_PERSISTENCE);
-		
-		Child childDirect=referedRepository.findById(ID_BASIC_PERSISTENCE);
+		Child childDirect=referedRepository.findById(ID_CHILD_LR);
 		childDirect.setName("modified-name");
 		referedRepository.save(childDirect);
 
-		Child childViaParent2=getFirstChildViaParent(ID_BASIC_PERSISTENCE);
+		Child childViaParent2=getFirstChildViaParent(ID_CONTAINER);
 		
-		assertEquals("name-1", childViaParent1.getName());
+		assertEquals("child-"+ID_CHILD_LR, childViaParent1.getName());
 		assertEquals("modified-name", childViaParent2.getName());
-		
 		
 		LOG.debug("Finished basic reference test.");
 	}
@@ -65,7 +55,8 @@ public class ReferenceTest extends PersistenceTest {
 	//
 	// Private stuff
 	//
-	private void resetTestEcosystem() {
+	private void extinguishEcosystem() {
+		LOG.debug("Extinguishing ecosystem.....");
 		List<Container> containerList=containerRepository.findAll();
 		for (Container container:containerList) {
 			containerRepository.delete(container);
@@ -74,12 +65,32 @@ public class ReferenceTest extends PersistenceTest {
 		for (Child refered:referedList) {
 			referedRepository.delete(refered);
 		}
+		LOG.debug("Ecosystem clear.");
+	}
+	private void populateEcosystem() {
+		LOG.debug("Populating test ecosystem.....");
+		Container container=buildSampleContainer(ID_CONTAINER, null);
+		
+		Child childListEmbedded=buildSampleChild(ID_CHILD_LE, null);
+		container.addChildEmbedded(childListEmbedded);
+		Child childListReferenced=buildSampleChild(ID_CHILD_LR, null);
+		container.addChildReferenced(childListReferenced);
+		
+		Child embedded=buildSampleChild(ID_CHILD_E, null);
+		container.setEmbedded(embedded);
+		Child referenced=buildSampleChild(ID_CHILD_R, null);
+		container.setReferenced(referenced);
+		
+		containerRepository.save(container);
+		referedRepository.save(childListReferenced); // Must be saved separately, otherwise I couldnt retrieve it later on......
+		referedRepository.save(referenced); // Must be saved separately, otherwise I couldnt retrieve it later on......
+		LOG.debug("Ecosystem populated.");
 	}
 	
 	private Child getFirstChildViaParent(long id) {
 		Container readContainer=containerRepository.findById(id);
 		assertNotNull(readContainer);
-		Child[] readChildren=readContainer.getChildren();
+		Child[] readChildren=readContainer.getChildrenReferenced();
 		assertNotNull(readChildren);
 		assertTrue(readChildren.length>0);
 		Child readRefered=readChildren[0];
